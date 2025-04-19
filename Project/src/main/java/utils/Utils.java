@@ -1,4 +1,5 @@
 package utils;
+// 可以用來寫一些額外的小功能
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -32,4 +33,6 @@ public class Utils {
 			return false;
 		}
 	}
+	
+
 }// end of class
