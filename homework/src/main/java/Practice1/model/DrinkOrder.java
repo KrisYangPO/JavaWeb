@@ -11,7 +11,7 @@ public class DrinkOrder {
 	private int price; 
 	
 	// 回報用的集合
-	Map<String, String> checkAddIce = Map.of("yes", "加冰", "false", "不加冰"); 
+	Map<String, String> checkAddIce = Map.of("yes", "加冰", "no", "不加冰"); 
 	Map<String, String> checkSize = Map.of("S","小小", "M","中中", "L","大大");
 	
 	
