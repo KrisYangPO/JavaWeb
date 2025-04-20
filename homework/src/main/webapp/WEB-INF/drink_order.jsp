@@ -12,7 +12,7 @@
 				<legend>Drink Order</legend>
 				飲料：${ drinkorder.item }<br />
 				容量：${ drinkorder.size }<br />
-				含糖：${ drinkorder.AddIce }<br />
+				含糖：${ drinkorder.addIce }<br />
 				${ drinkorder.info }<br />
 			</fieldset>
 		</div>

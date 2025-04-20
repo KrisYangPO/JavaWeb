@@ -15,12 +15,11 @@ public class DrinkTable {
 	List<Integer> psmall = new ArrayList<>(List.of(30, 45, 40));
 	List<Integer> pmedium = new ArrayList<>(List.of(50, 55, 45));
 	List<Integer> plarge = new ArrayList<>(List.of(70, 65, 50));
-	
-	
 	// 建立資料用的集合
 	List<List<Integer>> allPrice = new ArrayList<>(List.of(psmall, pmedium, plarge));
 	List<String> sizes = new ArrayList<>(List.of("S","M","L"));
-	Map<String, Map<String, Integer>> sizeItemPrice;
+	Map<String, Map<String, Integer>> sizeItemPrice = new LinkedHashMap<>();
+	
 	
 	
 	// 建立各個大小的 Price items
@@ -34,6 +33,7 @@ public class DrinkTable {
 		}
 		return itemPriceMap;
 	}
+	
 	
 	
 	// 建立最後的表單，以大小編號為 Key: 以 itemPrice table 為 value
