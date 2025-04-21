@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 //@WebServlet(urlPatterns = "/hello")
 
 // 給予多個網址名稱，對這些網址做相同的商業邏輯運算。
-@WebServlet(urlPatterns = {"/hello", "/welcome", "/hi.php"})
+@WebServlet(urlPatterns = {"/hello"})
 public class HelloServlet extends HttpServlet {
 
 	@Override
