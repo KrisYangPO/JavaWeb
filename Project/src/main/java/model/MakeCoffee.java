@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Map;
+import java.util.Set;
 
 public class MakeCoffee {
 	private double milk;
@@ -25,21 +26,28 @@ public class MakeCoffee {
 	// 設定 kind
 	private void setKind() {
 		String kind = "";
-		int ratio2 = (int)this.ratio * 10;
+		int ratio2 = (int)(this.ratio * 10);
 		Map<Integer, String> typeTable = Map.of(
-				30,"濃郁的拿鐵",
-				20,"平衡的拿鐵咖啡",
+				3,"濃縮咖啡",
 				10,"標準卡布奇諾",
-				3,"濃縮咖啡");
+				15,"平衡的拿鐵咖啡",
+				30,"濃郁的拿鐵"
+				);
 		
-		if(typeTable.get(ratio2) != null) {
-			kind = typeTable.get(ratio2);
-		}else {
-			kind = "普通咖啡";
+		for(Integer i: typeTable.keySet()) {
+			
+			if(i.equals(3)) {
+				if(ratio2 < 3) {kind = typeTable.get(i);}
+				
+			}else {
+				if(ratio2 >= i) {kind = typeTable.get(i);}
+			}	
+//			else {kind = "普通咖啡";}
 		}
 		this.kind = kind;
 	}
 		
+	
 	// 設定 description
 	private void setDescription() {
 		String des = "";
@@ -64,8 +72,26 @@ public class MakeCoffee {
 		// 將方法結果傳入 this.desc.
 		this.desc = des;
 	}
-	
-	
+
+	public double getMilk() {
+		return milk;
+	}
+
+	public double getCoffee() {
+		return coffee;
+	}
+
+	public String getRatio() {
+		return String.format("%.2f", this.ratio);
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
 	
 	
 }// end of makeCoffee
