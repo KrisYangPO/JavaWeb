@@ -66,7 +66,7 @@ public class PhonePlan {
 				.orElse("查無方案");
 	}
 	// 在 filter() 當中可以看到，是一個 Predicate 格式，
-	// 一個參數 p 帶入方法，在方法中要回傳 boolean 值，
+	// 一個參數 p 帶入方法，在方法中要回傳 boolean 值， 
 	// 而 Stream 物件元素就是 PhoneTraffic，每個 PhoneTraffic 實體都能執行 checkPlan
 	// checkPlan 會根據物件實體所建立的 condition 還有 min, traffic 參數判斷符合與否，
 	// 因此就會回傳布林值。這個設計就剛好符合 Predicate 格式，可以被帶入 filter 當中。
