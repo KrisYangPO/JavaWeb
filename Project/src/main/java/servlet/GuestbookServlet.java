@@ -25,7 +25,7 @@ public class GuestbookServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 可以將 forward 串接在後面。
-		req.getRequestDispatcher("/WEB-INF/guestbook_form.jps").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/guestbook_form.jsp").forward(req, resp);
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class GuestbookServlet extends HttpServlet{
 		Guestbook guestbook = new Guestbook(mesg);
 		guestbooks.add(guestbook);
 		// 導入result.jsp
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/guestbook_result.jps");
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/guestbook_result.jsp");
 		req.setAttribute("message", mesg); //本次留言(本次物件)
 		req.setAttribute("guestbook", guestbooks); //搜集陣列的內容。
 		rd.forward(req, resp);
