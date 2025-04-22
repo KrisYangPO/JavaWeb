@@ -7,14 +7,17 @@ public class IceShop {
 	// row data
 	private String main;
 	private String[] dressing;
+	private int dressPriec = 10;
 	private int totalPrice;
 	
 	// constructor
 	public IceShop(String main, String[] dressing) {
-		this.main = main;
-		this.dressing = dressing;
-		// 計算 main + 每個 dressing 10 塊
-		this.totalPrice = getPrice() + (10*dressing.length);
+		if (main != null || dressing != null) {
+			this.main = main;
+			this.dressing = dressing;
+			// 計算 main + 每個 dressing 10 塊
+			this.totalPrice = getPrice() + (dressPriec * dressing.length);
+		}
 	}
 	
 	// conditionOBJ
