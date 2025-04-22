@@ -37,7 +37,7 @@ public class GuestbookServlet extends HttpServlet{
 		// 導入result.jsp
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/guestbook_result.jsp");
 		req.setAttribute("message", mesg); //本次留言(本次物件)
-		req.setAttribute("guestbook", guestbooks); //搜集陣列的內容。
+		req.setAttribute("guestbooks", guestbooks); //搜集陣列的內容。
 		rd.forward(req, resp);
 	}
 	
