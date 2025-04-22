@@ -23,6 +23,48 @@
 					</c:forEach>
 				</ol>
 				總金額：${ iceshop.totalPrice }<p />
+				<p />
+				<h2> 點餐紀錄 </h2>
+<%-- 					<ul>
+						<c:forEach var="ics" items = "${iceorderlist}">
+							<li>${ ics.main }</li>
+								<ol>
+									<c:forEach var="dresses" items = "${ics.dressing}">
+										<li>${ dresses }</li>
+									</c:forEach>
+								</ol>
+							總金額：${ ics.totalPrice }
+						</c:forEach>
+					</ul> --%>
+				<p />
+				目前留言筆數：${fn:length(iceorderlist)}
+				<table class = "pure-table pure-table-bordered">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>主餐</th>
+							<th>點綴</th>
+							<th>總金額</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach varStatus="i" var="ics" items ="${iceorderlist}">
+							<tr>
+								<td>${i.index + 1 }</td>
+								<td>${ics.main }</td>
+								<td>
+									<ol>
+										<c:forEach var="dresses" items = "${ics.dressing}">
+											<li>${ dresses }</li>
+										</c:forEach>
+									</ol>
+								</td>
+								<td>${ics.totalPrice}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				
 				<a href="/JavaWeb/iceshop" class = "pure-button pure-botton-primary">返回</a>
 			</fieldset>
 		</div>

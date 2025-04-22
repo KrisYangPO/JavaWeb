@@ -33,10 +33,10 @@
 					<legend>選擇加料</legend>
 					<input type ="checkbox" name ="topping" value="花生" checked>花生 (10元) <p />
 					<input type ="checkbox" name ="topping" value="綠豆" checked>綠豆 (10元) <p />
-					<input type ="checkbox" name ="topping" value="紅豆" checked>綠豆 (10元) <p />
-					<input type ="checkbox" name ="topping" value="芋圓" checked>綠豆 (10元) <p />
-					<input type ="checkbox" name ="topping" value="粉圓" checked>綠豆 (10元) <p />
-					<input type ="checkbox" name ="topping" value="煉乳" checked>綠豆 (10元) <p />
+					<input type ="checkbox" name ="topping" value="紅豆" checked>紅豆 (10元) <p />
+					<input type ="checkbox" name ="topping" value="芋圓" checked>芋圓 (10元) <p />
+					<input type ="checkbox" name ="topping" value="粉圓" checked>粉圓 (10元) <p />
+					<input type ="checkbox" name ="topping" value="煉乳" checked>煉乳 (10元) <p />
 				</fieldset>
 				<button type = "submit" class ="pure-button pure-button-primary">結帳 </button>
 			</form>

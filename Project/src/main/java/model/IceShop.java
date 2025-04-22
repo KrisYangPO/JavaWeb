@@ -7,7 +7,7 @@ public class IceShop {
 	// row data
 	private String main;
 	private String[] dressing;
-	private int totalPrice; 
+	private int totalPrice;
 	
 	// constructor
 	public IceShop(String main, String[] dressing) {
@@ -58,8 +58,11 @@ public class IceShop {
 		return totalPrice;
 	}
 	
+	// 恢復名稱
+	public static final Map<String, String> mainName = Map.of("Douhua", "豆花", "Ice","冰果");
+	// 回傳中文字串
 	public String getMain() {
-		return main;
+		return mainName.get(main);
 	}
 	
 	public String[] getDressing() {
