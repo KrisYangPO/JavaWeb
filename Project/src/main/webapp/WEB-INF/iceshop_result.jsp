@@ -14,6 +14,7 @@
 	<body style="padding: 20px">
 		<div class="pure-form">
 			<h2> 點餐結果 </h2>
+			<c:set var = "totalPricesum" value ="0"/>
 			<fieldset>
 				<legend>點餐項目與金額：</legend>
 				主餐：${ iceshop.main }<p />
@@ -25,19 +26,8 @@
 				總金額：${ iceshop.totalPrice }<p />
 				<p />
 				<h2> 點餐紀錄 </h2>
-<%-- 					<ul>
-						<c:forEach var="ics" items = "${iceorderlist}">
-							<li>${ ics.main }</li>
-								<ol>
-									<c:forEach var="dresses" items = "${ics.dressing}">
-										<li>${ dresses }</li>
-									</c:forEach>
-								</ol>
-							總金額：${ ics.totalPrice }
-						</c:forEach>
-					</ul> --%>
 				<p />
-				目前留言筆數：${fn:length(iceorderlist)}
+				目前訂單筆數：${fn:length(iceorderlist)}
 				<table class = "pure-table pure-table-bordered">
 					<thead>
 						<tr>
@@ -45,6 +35,7 @@
 							<th>主餐</th>
 							<th>點綴</th>
 							<th>總金額</th>
+							<th>刪除</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -60,9 +51,19 @@
 									</ol>
 								</td>
 								<td>${ics.totalPrice}</td>
+								<c:set var = "totalPricesum" value = "${totalPricesum + ics.totalPrice }"/>
+								<td title="按我刪除" style = "cursor: pointer;">X</td>
 							</tr>
 						</c:forEach>
 					</tbody>
+					<tfoot>
+						<tr style = "background-color: #DDDDDD">
+							<td colspan = "4" style="text-align: right;">總金額</td>
+							<td> 
+								<fmt:formatNumber value="${ totalPricesum}" type="currency" maxFractionDigits = "0"/>
+							</td>  
+						</tr>
+					</tfoot>
 				</table>
 				
 				<a href="/JavaWeb/iceshop" class = "pure-button pure-botton-primary">返回</a>
