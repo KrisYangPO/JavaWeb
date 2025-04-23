@@ -20,4 +20,20 @@ public class OrderDAO {
 		return orders;
 	}
 	
+	// 刪除一筆資訊
+	public void remove(int index) {
+		orders.remove(index);
+	}
+	
+	// 修改資訊
+	public void update(int index, Order newdata) {
+		orders.set(index, newdata);
+	}
+	
+	// 取得單筆資料
+	// 修改時需要針對那一筆資料做修改，所以要先抓出那個物件
+	public Order getOrder(int index) {
+		return orders.get(index);
+	}
+	
 }

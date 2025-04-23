@@ -35,7 +35,17 @@ public class OrderService {
 	}
 	
 	
-	// 取得歷史資料
+	
+	/* 取得歷史資料
+		歷史資料就是 addOrder 將 Order 物件加入 DAO 資料庫後，
+		orderDAO 物件方法：findAll() 可以回傳一個儲存 Order 物件的 List 集合，
+		顯示歷史資料就是利用這個集合做顯示資訊，這裡要將 Order 轉成 OrderDTO 集合。
+		
+		為什麼不是直接用 Order 物件傳出去是因為 Order 或需有些商業邏輯不能被公開，
+		所以透過 DTO 物件取出 Order 物件的部分公開資訊：order.getItem(), order.getPrice() 
+		取出來後儲存在 DTO 的屬性：Message 當中 (setMessage 方法)，
+		再將設定好的 DTO 一個個儲存在 orderDTO 陣列裡，就能透過這個型別做回傳。
+	 */
 	public List<OrderDTO> getOrderHistory(){
 		// 取得所有資料
 		List<Order> orders = orderDAO.findAll(); 
@@ -52,4 +62,43 @@ public class OrderService {
 		return orderDTOs;
 	}
 	
+	
+	
+	// 根據 index 刪除訂單
+	public OrderDTO removeOrder(int index) {
+		orderDAO.remove(index);
+		OrderDTO orderDTO = new OrderDTO();
+		
+		// 刪除時透過 DTO 將訊息交給前端。
+		orderDTO.setMessage(String.format("index = %s, 資料刪除成功", index));
+		
+		return orderDTO;
+	}
+	
+	// 根據 String 刪除訂單
+	// 對 removeOrder 做 overloading
+	public OrderDTO removeOrder(String index) {
+		return removeOrder(Integer.parseInt(index));
+	}
+	
+	
+	// 修改單筆資料
+	public OrderDTO updateOrder(int index, String newItem) {
+		Order order = orderDAO.getOrder(index);
+		// 將要修改的 Order  用 orderDAO.getOrder()抓取
+		// 抓取出來的就是 Order 物件，所以可以在這裡對這個 Order 物件做修改。
+		// 修改完再由 update 紀錄 List.set(index, newObj)。
+		order.setItem(newItem);
+		orderDAO.update(index, order);
+		
+		// 回報 orderDTO 內容
+		OrderDTO orderDTO = new OrderDTO();
+		orderDTO.setMessage(String.format("index = %s, 資料修改成功", index));
+		return orderDTO;
+	}
+	// 修改訂單 Overloading
+	public OrderDTO updateOrder(String index, String newItem) {
+		return updateOrder(Integer.parseInt(index), newItem);
+	}
+
 }

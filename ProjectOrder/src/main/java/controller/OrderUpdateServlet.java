@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -12,41 +11,35 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.dto.OrderDTO;
 import service.OrderService;
 
-@WebServlet("/order")
-public class OrderServlet extends HttpServlet {
+@WebServlet("/order/update")
+public class OrderUpdateServlet extends HttpServlet {
 	
-	// Service 要負責呼叫 DAO
-	private OrderService orderservice = new OrderService();
+	private OrderService orderservice = new OrderService(); 
 	
-	// 查看歷史資料
-	@Override 
+	// 根據 index 呈現修改後的表單。
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 取得歷史資料
-		List<OrderDTO> orderDTOs = orderservice.getOrderHistory();
-		
-		// 總金額
-		int totalPrice = orderDTOs.size() * 100; 
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/history.jsp");
-		// 將歷史資料導入 history.jsp 裡。
-		req.setAttribute("orderDTOs", orderDTOs);
-		req.setAttribute("totalprice", totalPrice);
-		rd.forward(req, resp);
+		String index = req.getParameter("index");
+
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/update.jsp");
+		req.setAttribute("index", index);
+		rd.forward(req, resp); 
 	}
-	
-	// 接收訂單的請求
+
+	// 修改表單
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
+		String index = req.getParameter("index");
+		String item = req.getParameter("item");
 		
-		// 使用者在表單選取的商品 (index.jsp)
-		String item =req.getParameter("item");
-		// 新增訂單，並且得到反饋
-		OrderDTO orderDTO = orderservice.addOrder(item);
+		// 執行修改 OrderService::updateOrder
+		OrderDTO orderDTO = orderservice.updateOrder(index, item);
 		
 		// 將反饋 (OrderDTO 回傳 message) 導入 result.jsp 裡。
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/result.jsp");
 		req.setAttribute("orderDTO", orderDTO);
-		rd.forward(req, resp);
+		rd.forward(req, resp); 
 		
 	}
 	

@@ -9,11 +9,12 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+		<link rel="stylesheet" href="/JavaWebOrder/css/buttons.css">
 	</head>
 	
 	<body style = "padding: 20px">
 		<div class = "pure-form">
-			<legend>並單結果</legend>
+			<legend>定單結果</legend>
 			${ orderDTO.message }
 			<p/>
 			<a href= "/JavaWebOrder/index.jsp" class = "pure-button pure-botton-primary">回首頁</a>
