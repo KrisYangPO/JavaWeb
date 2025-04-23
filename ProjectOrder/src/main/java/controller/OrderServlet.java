@@ -11,12 +11,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.dto.OrderDTO;
 import service.OrderService;
+import service.ProductService;
 
 @WebServlet("/order")
 public class OrderServlet extends HttpServlet {
 	
 	// Service 要負責呼叫 DAO
 	private OrderService orderservice = new OrderService();
+	private ProductService productservice = new ProductService();
 	
 	// 查看歷史資料
 	@Override 
@@ -25,7 +27,8 @@ public class OrderServlet extends HttpServlet {
 		List<OrderDTO> orderDTOs = orderservice.getOrderHistory();
 		
 		// 總金額
-		int totalPrice = orderDTOs.size() * 100; 
+		int totalPrice = orderDTOs.stream().mapToInt(dto -> productservice.getPrice(dto.getMessage())).sum();
+		
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/history.jsp");
 		// 將歷史資料導入 history.jsp 裡。
 		req.setAttribute("orderDTOs", orderDTOs);

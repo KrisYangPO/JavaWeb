@@ -1,13 +1,17 @@
 package service;
 
 import java.util.*;
+
+import controller.OrderPriceRule;
 import dao.OrderDAO;
+import dao.ProductDAO;
 import model.dto.OrderDTO;
 import model.entity.Order;
 
 // Service 用來呼叫 DAO
 public class OrderService {
 	private OrderDAO orderDAO = new OrderDAO();
+	private ProductDAO productDAO = new ProductDAO();
 	
 	 /* addOrder 會執行兩件事：
 	 1. 將訂單儲存至資料庫：
@@ -24,7 +28,18 @@ public class OrderService {
 		// 1. 根據訂單內容在 DAO 建立資訊
 		Order order = new Order();
 		order.setItem(item);
-		order.setPrice(100); // 均一價 100
+		
+		// 建立 Price 設定物件：
+		// OrderPriceRule 依照不同 item 給予不同的價錢，
+		// 利用 OPR.getPrice() 求出金額後，
+		// 再用 Order 的 setter: setPrice 更改物件 price 屬性值。
+//		OrderPriceRule OPR = new OrderPriceRule(item);
+//		order.setPrice(OPR.getPrice()); 
+		
+		// 或是用 ProductDAO 方式：
+		// productDAO 可以根據你的 item 抓取出他的 Product 物件資訊，就可以取得 Product 價錢。
+		order.setPrice(productDAO.getProduct(item).getPrice());
+		
 		// 傳給 OrderDAO 儲存
 		orderDAO.save(order);
 		
