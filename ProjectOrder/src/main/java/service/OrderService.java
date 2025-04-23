@@ -9,9 +9,16 @@ import model.entity.Order;
 public class OrderService {
 	private OrderDAO orderDAO = new OrderDAO();
 	
-	// 根據訂單項目 (item)，新增訂單，並回傳訂單顯示資訊(OrderDTO) 
-	// Service 從 Servlet 取得 item 後，就可以建立 Order 物件，
-	// 呼叫 OrderDAO 物件將他加入 orderDAO 的資料庫 (在這裡是 InMemory List)
+	 /* addOrder 會執行兩件事：
+	 1. 將訂單儲存至資料庫：
+	 	根據訂單項目 (item)，新增訂單，並回傳訂單顯示資訊(OrderDTO) 
+	 	Service 從 Servlet 取得 item 後，就可以建立 Order 物件，
+	 	呼叫 OrderDAO.save() 方法將他加入 orderDAO 的資料庫 (在這裡是 InMemory List)，
+	 	這個過程就會將訂單內容儲存在 DAO 資料庫中。
+	 2. 回報訂單資訊：
+		建立 orderDTO 物件，將資訊儲存在 DTO 物件裡的屬性 message (setMessage)
+		並直接回傳設定好的 orderDTO 物件。
+	 */
 	public OrderDTO addOrder(String item) {
 		
 		// 1. 根據訂單內容在 DAO 建立資訊
@@ -23,9 +30,10 @@ public class OrderService {
 		
 		// 2. 回傳訂單資訊 (藉由 OrderDTO)
 		OrderDTO orderDTO = new OrderDTO();
-		orderDTO.setMessage(String.format("您點了:%s; 價格：&s 元", order.getItem(), order.getPrice()));
+		orderDTO.setMessage(String.format("您點了:%s; 價格：%s 元", order.getItem(), order.getPrice()));
 		return orderDTO;
 	}
+	
 	
 	// 取得歷史資料
 	public List<OrderDTO> getOrderHistory(){
@@ -37,7 +45,7 @@ public class OrderService {
 		// 一筆筆從 Order 轉成 OrderDTO
 		for(Order order: orders) {
 			OrderDTO dto = new OrderDTO();
-			dto.setMessage(String.format("您點了:%s; 價格：&s 元", order.getItem(), order.getPrice()));
+			dto.setMessage(String.format("您點了:%s; 價格：%s 元", order.getItem(), order.getPrice()));
 			orderDTOs.add(dto); // 逐筆資訊加入集合中。
 		}
 		// 將回報給 Controller: Servlet
