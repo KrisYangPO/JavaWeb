@@ -30,6 +30,9 @@ public class ProductService {
 	}
 	
 	// 根據 Message 取得價格：
+	// 這裡的 Message 是 OrderDTO 物件的屬性，
+	// 經過 OrderService.addOrder(item) 可以存取 Order 物件，
+	// 也會回報 OrderDTO 物件出來，裡面就包含 Order 物件的
 	public Integer getPrice(String message) {
 		return productDAO
 				.findAll()

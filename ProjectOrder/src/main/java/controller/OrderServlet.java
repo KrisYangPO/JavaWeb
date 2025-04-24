@@ -27,7 +27,15 @@ public class OrderServlet extends HttpServlet {
 		List<OrderDTO> orderDTOs = orderservice.getOrderHistory();
 		
 		// 總金額
-		int totalPrice = orderDTOs.stream().mapToInt(dto -> productservice.getPrice(dto.getMessage())).sum();
+		// orderDTOs 儲存所有訂單的 DTO 字串 Message，裡面包含品項名與金額，
+		// 用 stream() 管線程式可以將他們用 mapToInt() 套用方法，並輸出成 Int，
+		// 方法裡面執行 ProductService 的 getPrice，根據一段 "message" 取出 item，
+		// 就會得到 product.getPrice 結果 (productService.getPrice() 方法)。
+		// 最後由 Stream 串接方法 sum() 總和所有訂單的計算。
+		int totalPrice = orderDTOs
+							.stream()
+							.mapToInt(dto -> productservice.getPrice(dto.getMessage()))
+							.sum();
 		
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/history.jsp");
 		// 將歷史資料導入 history.jsp 裡。
