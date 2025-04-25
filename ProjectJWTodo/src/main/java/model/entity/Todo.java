@@ -9,4 +9,9 @@ public class Todo {
 	private Integer id; // 序號
 	private String text; // todo項目
 	private boolean completed; // 項目是否完成
+	
+	public boolean getCompleted() {
+		// TODO Auto-generated method stub
+		return completed;
+	}
 }
