@@ -9,7 +9,7 @@ import dao.*;
 
 // 實作 TodoListService interface，方便後續更改。
 public class TodoListServiceImpl implements TodoListService {
-	
+		
 	// 呼叫 DAO 存取功能的實作物件
 	// 就可以呼叫他的方法存取所有 DAO entity 並轉成 DTO 物件
 	private TodoListDao dao = new TodoListDaoImpl();

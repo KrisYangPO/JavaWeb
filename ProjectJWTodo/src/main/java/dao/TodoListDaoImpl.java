@@ -126,7 +126,7 @@ public class TodoListDaoImpl extends BaseDao implements TodoListDao {
 			e.printStackTrace();
 		}		
 	}
-
+	
 	@Override
 	public void deleteTodo(Integer id) {
 		String sql = "delete from todo where id=?";
