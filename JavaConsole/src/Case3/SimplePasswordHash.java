@@ -1,19 +1,30 @@
 package Case3;
 
 import java.security.MessageDigest;
+import java.security.SecureRandom;
 
 public class SimplePasswordHash {
 	
-	public static String hashPassword(String password) throws Exception {
+	public static String generateSalt() throws Exception{
+		SecureRandom random = new SecureRandom();
+		byte[] salt = new byte[16]; // 16 bytes = 128bits
+		random.nextBytes(salt);
+		return bytesToHex(salt);
+	}
+	
+	public static String hashPassword(String password, String salt) throws Exception {
 		// 使用 SHA-256 雜湊演算法，定義哪個演算法。
 		MessageDigest md = MessageDigest.getInstance("SHA-256");
-		// 將 Password 進行雜湊 (建立 byte 陣列)
-		byte[] hashByte = md.digest(password.getBytes());
 		
-		// 將 byte 轉成 16 進位字串(比較好儲存)：
+		// 加鹽
+		byte[] hashBytes = md.digest((password + salt).getBytes()); 
+		return bytesToHex(hashBytes);
+	}
+	
+	private static String bytesToHex(byte[] bytes) {
+		// 將 byte[] 轉成 16 進位
 		StringBuilder sb = new StringBuilder();
-		for (byte b: hashByte) {
-			// 兩位數，如果是個位數就在前面加零
+		for(byte b: bytes) {
 			sb.append(String.format("%02x", b));
 		}
 		return sb.toString();
@@ -21,7 +32,9 @@ public class SimplePasswordHash {
 	
 	public static void main(String[] args) throws Exception {
 		String password = "1234";
-		String hash = hashPassword(password);
+		String salt = generateSalt();
+		String hash = hashPassword(password, salt);
+		System.out.printf("salt: %s  length: %d%n", salt, salt.length());
 		System.out.printf("password: %s hash: %s%n length: %d%n", password, hash, hash.length());
 	}
 }
