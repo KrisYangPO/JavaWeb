@@ -4,9 +4,15 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>Index</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
 	</head>
 	<body>
-	
+		<!-- menu bar -->
+		<%@ include file="/WEB-INF/view/cart/menu.jsp"  %>
+		<!-- content -->
+		<div style="padding: 15px">
+			<h1>Welcome Cart ~</h1>
+		</div>
 	</body>
 </html>

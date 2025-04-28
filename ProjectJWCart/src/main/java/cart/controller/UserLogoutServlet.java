@@ -8,12 +8,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/user/register")
-public class UserRegisterServlet extends HttpServlet {
+@WebServlet("/user/logout")
+public class UserLogoutServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/view/cart/user_register.jsp").forward(req, resp);
+		
+		// 點選會員登出的時候，一樣會重新回到 userLogin 的畫面，可以重新登入。
+		req.getRequestDispatcher("/WEB-INF/view/cart/user_login.jsp").forward(req, resp);
 	}
 
 	@Override
