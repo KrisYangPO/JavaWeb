@@ -19,7 +19,7 @@ public class UserRegisterServiceImpl implements UserRegisterService {
 			
 			// User 物件中，不可以存放明碼 Password 資料
 			User user = new User();
-			user.setUsername(hashPassword);
+			user.setUsername(username);
 			user.setHashPassword(hashPassword);
 			user.setHashsalt(hashSalt);
 			user.setEmail(email);
