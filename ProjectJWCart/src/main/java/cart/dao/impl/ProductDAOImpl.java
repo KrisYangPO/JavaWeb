@@ -11,6 +11,7 @@ import cart.model.entity.Product;
 
 public class ProductDAOImpl extends BaseDao implements ProductDAO {
 
+	// 新增 Product 
 	@Override
 	public void add(Product product) {
 		String sql = "insert into product(product_name, price, qty, image_base64) values(?,?,?,?)";
@@ -31,7 +32,8 @@ public class ProductDAOImpl extends BaseDao implements ProductDAO {
 			se.printStackTrace();
 		}
 	}
-
+	
+	// 顯示所有 Product
 	@Override
 	public List<Product> findAllProducts() {
 		List<Product> products = new ArrayList<>();
@@ -58,8 +60,11 @@ public class ProductDAOImpl extends BaseDao implements ProductDAO {
 		}catch(SQLException se) {
 			se.printStackTrace();
 		}
+		return null;
 	}
 
+	
+	// 刪除 Product 
 	@Override
 	public void delete(Integer productId) {
 		String sql = "delete from product where id=?";
