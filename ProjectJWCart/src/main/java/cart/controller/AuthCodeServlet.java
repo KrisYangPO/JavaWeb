@@ -37,9 +37,10 @@ public class AuthCodeServlet extends HttpServlet {
 		Random random = new Random();
 //		String authcode = String.format("%04d", random.nextInt(10000)); // 0000~9999 的隨機數
 		String authcode = generateAuthCode();
-		// 將 Authcode 存入 Http裏頭
+		
+		// 將 Authcode 存入 session (Server)，這樣所有 JSP 都可以知道 authcode 是什麼
 		HttpSession session = req.getSession();
-		session.setAttribute("authcode", session);
+		session.setAttribute("authcode", authcode);
 		
 		ImageIO.write(getAuthCodeImage(authcode), "JPEG", resp.getOutputStream());
 	}

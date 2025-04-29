@@ -39,6 +39,8 @@ public class UserRegisterServlet extends HttpServlet {
 		email_service.sendEmail(email, ConfirmLink);
 		
 		// 準備要給 result.jsp 的資訊
+		// 當 email_service.sendEmail 成功寄信出去後，就會將以下訊息傳給 result.jsp
+		// 當你在email 中點擊網址，他也會前往 result.jsp
 		String resultTitle = "註冊結果";
 		String resultMessage = "用戶 " + username + " 註冊成功 !";
 		resultMessage += "<p />";
