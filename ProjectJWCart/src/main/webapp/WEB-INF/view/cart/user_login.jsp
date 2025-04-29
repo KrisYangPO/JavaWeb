@@ -17,6 +17,8 @@
 		</style>
 	</head>
 	<body style="padding: 15px">
+		<!-- menu bar -->
+		<%@ include file="/WEB-INF/view/cart/menu.jsp"  %>
 		<form class="pure-form" method="post" action="/JavaWebCart/user/login">
 			<fieldset>
 				<legend>使用者登入</legend>

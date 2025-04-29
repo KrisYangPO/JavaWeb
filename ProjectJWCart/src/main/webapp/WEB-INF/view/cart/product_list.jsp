@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>商品列表管理</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+		<link rel="stylesheet" href="/JavaWebOrder/css/buttons.css">
 		<style>
 			#preview {
 				margin-top: 10px;
@@ -48,7 +51,18 @@
 							</thead>
 							<tbody>
 								<!-- 商品列表 -->
-								
+								<c:forEach varStatus="row" var="productDTO" items="${productDTOs}">
+									<tr>
+										<td>${productDTO.productId}</td>
+										<td>${productDTO.productName }</td>
+										<td>${productDTO.price }</td>
+										<td>${productDTO.qty }</td>
+										<td>${productDTO.total }</td>
+										<td>${productDTO.imageBase64 }</td>
+										<td><a href = "/JavaWebCart/product/delete?id=${productDTO.productId}" class="button-error pure-button">X</a>
+									</tr>
+	
+								</c:forEach>
 							</tbody>
 						</table>
 					</fieldset>

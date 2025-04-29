@@ -23,17 +23,17 @@ public class UserListService implements cart.service.UserListService {
 	}
 	
 	
-	// 將 Entity 轉成 dto
-	private UserDTO transferToDTO(User user){
-		UserDTO dto = new UserDTO(
-				user.getId(),
-				user.getUsername(),
-				user.getEmail(),
-				user.getCompleted()
-				);
-		
-		return dto;
-	}
+//	// 將 Entity 轉成 dto
+//	private UserDTO transferToDTO(User user){
+//		UserDTO dto = new UserDTO(
+//				user.getId(),
+//				user.getUsername(),
+//				user.getEmail(),
+//				user.getCompleted()
+//				);
+//		
+//		return dto;
+//	}
 	
 
 }

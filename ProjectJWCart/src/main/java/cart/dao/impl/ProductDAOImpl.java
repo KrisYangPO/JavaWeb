@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.cj.xdevapi.Statement;
+
 import cart.dao.ProductDAO;
 import cart.model.entity.Product;
 
@@ -37,16 +39,16 @@ public class ProductDAOImpl extends BaseDao implements ProductDAO {
 	@Override
 	public List<Product> findAllProducts() {
 		List<Product> products = new ArrayList<>();
-		String sql = "select id, product_name, price, qty, image_base64 from product order by id";
+		String sql = "select product_id, product_name, price, qty, image_base64 from product order by product_id";
 		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery()){
+				ResultSet rs = pstmt.executeQuery()){
 			
 			// 檢視每筆查詢資料庫的結果
 			while(rs.next()) {
 				// 根據資料庫內容建立每筆 product 物件，
 				Product product = new Product();
-				product.setProductId(rs.getInt("id"));
+				product.setProductId(rs.getInt("product_id"));
 				product.setProductName(rs.getString("product_name"));
 				product.setPrice(rs.getInt("price"));
 				product.setQty(rs.getInt("qty"));
@@ -67,7 +69,7 @@ public class ProductDAOImpl extends BaseDao implements ProductDAO {
 	// 刪除 Product 
 	@Override
 	public void delete(Integer productId) {
-		String sql = "delete from product where id=?";
+		String sql = "delete from product where product_id=?";
 		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setInt(1, productId);

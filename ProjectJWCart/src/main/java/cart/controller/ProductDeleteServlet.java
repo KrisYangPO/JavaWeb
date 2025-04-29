@@ -3,9 +3,9 @@ package cart.controller;
 import java.io.IOException;
 import java.util.List;
 
-import cart.service.impl.ProductServiceImpl;
 import cart.model.dto.ProductDTO;
-import cart.service.*;
+import cart.service.ProductService;
+import cart.service.impl.ProductServiceImpl;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,20 +13,20 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/product/list")
-public class ProductServlet extends HttpServlet {
-	
-	// 建立 ProductService 物件
-	private ProductService productService = new ProductServiceImpl();
 
+//在 product/list.jsp 牽動 delete 時可以執行的 doGet
+@WebServlet("/product/delete")
+public class ProductDeleteServlet extends HttpServlet {
+
+	private ProductService productService = new ProductServiceImpl(); 
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String id = req.getParameter("id");
+		// 執行刪除
+		productService.delete(Integer.parseInt(id));
 		
-		// 建立 ProductDTOs
-		List<ProductDTO> productDTOs = productService.findAllProducts();
-		req.setAttribute("productDTOs", productDTOs);
-		// 取得所有商品
-		req.getRequestDispatcher("/WEB-INF/view/cart/product_list.jsp").forward(req, resp);
-		
+		// 重新導向 list。
+		resp.sendRedirect("/JavaWebCart/product/list");
 	}
 }
