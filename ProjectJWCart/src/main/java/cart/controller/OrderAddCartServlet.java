@@ -57,5 +57,9 @@ public class OrderAddCartServlet extends HttpServlet {
 		}
 		// 回到訂單主頁
 		resp.sendRedirect("/JavaWebCart/product/order");
+		// 接下來就要顯示購物車的頁面。
+		
+		// 列印 session 裡面的 cart:
+//		System.out.println(session.getAttribute("cart"));
 	}
 }
