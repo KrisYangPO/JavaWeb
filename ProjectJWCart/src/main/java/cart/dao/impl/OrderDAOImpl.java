@@ -4,10 +4,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import cart.dao.OrderDAO;
 import cart.model.entity.Order;
+import cart.model.entity.OrderItem;
 
 public class OrderDAOImpl extends BaseDao implements OrderDAO {
 
@@ -76,14 +78,60 @@ public class OrderDAOImpl extends BaseDao implements OrderDAO {
 	
 	@Override
 	public List<Order> findAllOrdersByUserId(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select order_id, user_id, order_date from `order` where user_id = ?";
+		List<Order> orders = new ArrayList<>();
+		
+		// 找尋哪個 userId
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, userId);
+
+			try(ResultSet rs = pstmt.executeQuery()){
+				while(rs.next()) {
+					// mapping
+					Order order = new Order();
+					order.setOrderId(rs.getInt("order_id"));
+					order.setUserId(rs.getInt("user_id"));
+					order.setOrderDate(rs.getDate("order_date"));;
+					// 新增到集合：
+					orders.add(order);
+				}
+				return orders;
+			}
+			
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return null; 
 	}
 
 	@Override
-	public List<Order> findAllOrdersByOrderId(Integer orderId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OrderItem> findAllOrdersByOrderId(Integer orderId) {
+		List<OrderItem> items = new ArrayList<>();
+		String sql = "select item_id, order_id, product_id, quantity from order_item where order_id = ?";
+		
+		// 找尋哪個 orderId
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, orderId);
+
+			try(ResultSet rs = pstmt.executeQuery()){
+				while(rs.next()) {
+					// mapping
+					OrderItem item = new OrderItem();
+					item.setItemId(rs.getInt("item_id"));
+					item.setOrderId(rs.getInt("order_id"));
+					item.setProductId(rs.getInt("product_id"));
+					item.setQuantity(rs.getInt("quantity"));
+					
+					// 新增到集合：
+					items.add(item);
+				}
+				return items;
+			}
+			
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return null; 
 	}
 	
 }

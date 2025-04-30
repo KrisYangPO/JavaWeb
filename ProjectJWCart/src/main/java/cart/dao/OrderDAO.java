@@ -3,6 +3,7 @@ package cart.dao;
 import java.util.List;
 
 import cart.model.entity.Order;
+import cart.model.entity.OrderItem;
 
 public interface OrderDAO {
 	
@@ -17,6 +18,6 @@ public interface OrderDAO {
 	public abstract List<Order> findAllOrdersByUserId(Integer userId);
 	
 	// 查詢"訂單"明細 by OrderId
-	public abstract List<Order> findAllOrdersByOrderId(Integer orderId);
+	public abstract List<OrderItem> findAllOrdersByOrderId(Integer orderId);
 	
 }
