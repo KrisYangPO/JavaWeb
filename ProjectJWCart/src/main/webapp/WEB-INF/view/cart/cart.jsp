@@ -39,6 +39,11 @@
                                     onmouseout="this.style.backgroundColor=''">
                                     <td>
                                     	<a href = "/JavaWebCart/product/cart/item/delete?id=${status.index}" class="button-error pure-button">X</a>
+<%--                                     	如果要用 post 寫，需要建立 form 表單，並在裡面建立隱藏參數指定 id 是誰：
+                                    	<form method="post" action = "/JavaWebCart/product/cart/item/delete">
+                                    		<input type = "hidden" name = "index" value = "${status.index}" />
+                                    		<input type = "submit" value="X" /> 
+                                    	</form> --%>
                                     </td>
                                     <td align="center">${status.index}</td>
                                     <td align="center">${item.productId}</td>

@@ -35,6 +35,7 @@ public class OrderAddCartServlet extends HttpServlet {
 			cart = new ArrayList<>();
 		}else {
 			// 目前在使用中的購物車(之前已經加入的購物車)
+			// 需要將 session 物件裡的 "cart" 轉型成 List<ProductDTO> 才會是集合。
 			cart = (List<ProductDTO>)session.getAttribute("cart"); 
 		}
 		
