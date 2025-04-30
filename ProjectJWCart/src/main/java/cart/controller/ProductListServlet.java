@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/product/list")
-public class ProductServlet extends HttpServlet {
+public class ProductListServlet extends HttpServlet {
 	
 	// 建立 ProductService 物件
 	private ProductService productService = new ProductServiceImpl();

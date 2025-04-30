@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
 		// 建立 Product 物件，並透過 DAO 物件將 Product 物件儲存在資料庫中
 		Product product = new Product();
 		product.setProductName(productName);
-		product.setPrice(Integer.parseInt(price));
+		product.setPrice(Integer.parseInt(price == null ? "0" : price));
 		product.setQty(Integer.parseInt(qty));
 		product.setImageBase64(producImageBase64);
 		

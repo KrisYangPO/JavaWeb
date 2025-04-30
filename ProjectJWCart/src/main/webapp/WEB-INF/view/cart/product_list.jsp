@@ -28,7 +28,7 @@
 				<td valign="top">
 					<fieldset>
 						<legend>商品表單</legend>
-						<form enctype="multipart/form-data" method="post" action="/javaweb/product/add">
+						<form enctype="multipart/form-data" method="post" action="/JavaWebCart/product/add">
 							商品名稱：<input type="text" id="productName" name="productName" required="true"><p />
 							商品價格：<input type="number" id="price" name="price" required="true" min="1" max="200"><p />
 							商品庫存：<input type="number" id="qty" name="qty" required="true" min="1" max="999999"><p />
