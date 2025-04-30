@@ -58,7 +58,9 @@
 										<td>${productDTO.price }</td>
 										<td>${productDTO.qty }</td>
 										<td>${productDTO.total }</td>
-										<td>${productDTO.imageBase64 }</td>
+										<td>
+											<img width="100" src='data:image/png;base64,${ productDTO.imageBase64 }'>
+										</td>
 										<td><a href = "/JavaWebCart/product/delete?id=${productDTO.productId}" class="button-error pure-button">X</a>
 									</tr>
 	

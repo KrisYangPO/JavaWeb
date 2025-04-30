@@ -22,11 +22,16 @@ public class ProductDeleteServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		// 在觸發 delete 的網址中，夾帶了一個 id=...的參數：
+		// <a href = "/JavaWebCart/product/delete?id=${productDTO.productId}"
+		// id 就是欄位的 index，也是 product 在資料庫記錄的 id。
+		
 		String id = req.getParameter("id");
 		// 執行刪除
 		productService.delete(Integer.parseInt(id));
 		
-		// 重新導向 list。
+		// 重跑商品管理頁面 list。
 		resp.sendRedirect("/JavaWebCart/product/list");
 	}
 }
