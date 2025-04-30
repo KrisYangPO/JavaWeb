@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpSession;
 import cart.model.dto.*;
 
 // 將商品加入購物車裡，進行暫存。
-// 將所訂購商品，暫時存放在 "Session" 當中。
+// 將所訂購商品，暫時存放在 "Session" 當中，而並不是將訂單紀錄放在資料庫。
 
 @WebServlet("/product/order/add/cart")
 public class OrderAddCartServlet extends HttpServlet {

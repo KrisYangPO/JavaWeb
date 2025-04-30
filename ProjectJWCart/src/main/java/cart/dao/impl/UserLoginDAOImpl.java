@@ -22,6 +22,7 @@ public class UserLoginDAOImpl extends BaseDao implements UserLoginDAO {
 				// 判斷是否有誤：
 				if(rs.next()) {
 					User user = new User();
+					user.setId(rs.getInt("id"));
 					user.setUsername(rs.getString("username"));
 					user.setHashPassword(rs.getString("hash_password"));
 					user.setHashsalt(rs.getString("hash_salt"));

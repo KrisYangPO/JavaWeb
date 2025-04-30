@@ -26,9 +26,9 @@ public class CartSubmitServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 		List<ProductDTO> carts = (List<ProductDTO>)session.getAttribute("cart");
-		
 		// 新增訂單到資料表
 		orderService.addOrder(userDTO.getId(), carts);
+		
 		// 清空購物車
 		session.removeAttribute("cart");
 		
