@@ -26,7 +26,7 @@ public class OrderDAOImpl extends BaseDao implements OrderDAO {
 			
 			pstmt.setInt(1, userId);
 			pstmt.executeUpdate(); // 執行更新
-			
+			 
 			// 取得 GENERATED KEYS:
 			ResultSet generateKeys = pstmt.getGeneratedKeys();
 			if(generateKeys.next()) {
