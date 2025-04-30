@@ -12,7 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 // 要過濾哪些路徑
-@WebFilter(urlPatterns = {"/user/list", "/product/list"})
+// 所有網頁路徑上在 product 之下，都需要經過這個 filter，登入才可以通過 filter
+@WebFilter(urlPatterns = {"/user/list", "/product/*"})
 public class LoginFilter extends HttpFilter {
 
 	@Override

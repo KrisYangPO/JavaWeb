@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cart.model.entity.OrderItem;
+import lombok.Data;
 
+@Data
 public class OrderDTO {
 	private Integer orderId;
 	private Integer userId;
