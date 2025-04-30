@@ -20,7 +20,7 @@ public class OrderDAOImpl extends BaseDao implements OrderDAO {
 		
 		// order id 是 mySQL 自動生成。用來存放新增後的 order 數值。
 		Integer orderId = null; 
-		// 所以要加上 Statement.RETURN_GENERATED_KEYS 參數設定。
+		// 所以 Connection 方法要加上 Statement.RETURN_GENERATED_KEYS 參數設定。
 		// 可以取得 mySQL 自動生成的數值。
 		try(PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 			
