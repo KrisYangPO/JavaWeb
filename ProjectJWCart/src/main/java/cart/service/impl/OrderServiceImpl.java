@@ -36,6 +36,10 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	
+	// 回圈讀取所有 Order，先建立 OrderDTO 物件，裡面有個 items 的 List<OrderItemDTO> 集合，
+	// 再根據各個 Order 編號找出所有訂單明細 (item)，建立出來後也一樣先轉成 OrderItemDTO，
+	// 將 OrderItemDTO 加入第一個回圈執行中的 OrderDTO 的 items 屬性集合中，
+	
 	@Override
 	public List<OrderDTO> findAllOrdersByUserId(Integer userId) {
 		List<OrderDTO> orderDTOs = new ArrayList<>();
@@ -50,8 +54,14 @@ public class OrderServiceImpl implements OrderService {
 			orderDTO.setUserId(order.getUserId());
 			orderDTO.setOrderDate(order.getOrderDate());
 			
-			// 明細
-			for(OrderItem item: orderDAO.findAllOrdersByOrderId(order.getOrderId())) {
+			
+			// 將這個 order 底下的明細紀錄在 orderDTO 的 items 屬性裡。
+			// 先用 order_id 呼叫這個 order 的所有 items，儲存在 items 的 List<OrderItem> 集合中，
+			// 用 forEach 回圈將 List<OrderItem> 轉成 List<OrderItemDTO>
+			// 建立好後，再直接紀錄到 orderDTO 的 items 屬性的集合中。
+			
+			List<OrderItem> items = orderDAO.findAllOrdersByOrderId(order.getOrderId());
+			for(OrderItem item: items) {
 				// OrderItem 轉 OrderItemDTO
 				OrderItemDTO itemDTO = new OrderItemDTO();
 				itemDTO.setItemId(item.getItemId());
@@ -60,6 +70,8 @@ public class OrderServiceImpl implements OrderService {
 				itemDTO.setQuantity(item.getQuantity());
 				
 				// 加入集合
+				// 因為 orderDTO 已經初始化為 ArrayList，用 getItems() 就可以呼叫這個集合。
+				// 直接用集合 add() 加入新的集合元素。
 				orderDTO.getItems().add(itemDTO);
 			
 			}
