@@ -24,9 +24,12 @@ public class CartSubmitServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 從 session 中搜尋 userId 與 cart 資訊。
 		HttpSession session = req.getSession();
+		// 取得當前登入使用者 DTO 物件
 		UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
+		// 取得當前購物車 "carts" 所儲存的產品DTO集合(你下訂的哪些產品)
 		List<ProductDTO> carts = (List<ProductDTO>)session.getAttribute("cart");
-		// 新增訂單到資料表
+		
+		// 新增訂單到資料表(addOrder + addOrderItem)
 		orderService.addOrder(userDTO.getId(), carts);
 		
 		// 清空購物車

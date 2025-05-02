@@ -33,6 +33,8 @@
                         </thead>
                         <tbody>
                             <c:set var="total" value="0" />
+                            <!-- cart 這個變數經由 OrderAddCartServlet 儲存在 Session，所以不用 setAttribute，
+                            可以直接取用 -->
                             <c:forEach var="item" items="${cart}" varStatus="status">
                                 <c:set var="total" value="${total + item.price}" />
                                 <tr onmouseover="this.style.backgroundColor='#E0E0ff'" 

@@ -39,7 +39,6 @@ public class OrderDAOImpl extends BaseDao implements OrderDAO {
 			ex.printStackTrace();
 		}
 		
-		
 		return orderId;
 	}
 
@@ -62,6 +61,8 @@ public class OrderDAOImpl extends BaseDao implements OrderDAO {
 		}
 		
 		// 扣抵庫存 (買完東西，庫存需要刪除一樣的量)
+		// 使用者下訂單後，下單多少產品，就要減少多少庫存量，
+		// 所以下單後，要同時更新資料庫的內容，將這個產品(product_id)的庫存 (qty) 減去下單數(quantity)
 		sql = "update product set qty = qty - ? where product_id = ?";
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			

@@ -12,6 +12,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+// 傳送至網頁，要訂購產品的時候，會執行的 Servlet，
+// 訂購時需要知道所有 Product 的產品資訊，並按下訂購的按鍵，
+// submit 之後加入購物車。
+
 @WebServlet("/product/order")
 public class OrderServlet extends HttpServlet {
 	

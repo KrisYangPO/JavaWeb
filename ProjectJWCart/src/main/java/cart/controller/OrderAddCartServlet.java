@@ -27,7 +27,8 @@ public class OrderAddCartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		
-		// 建立準備存放產品的購物車，但是要先確認購物車是否有之前欲購買的商品：
+		// 建立準備存放產品的購物車，
+		// 但是要先確認購物車是否有之前欲購買的商品：
 		List<ProductDTO> cart = null; 
 		
 		// 確認 Session 是否已經存在有購物車資訊：
@@ -46,10 +47,17 @@ public class OrderAddCartServlet extends HttpServlet {
 		// 根據 id 取得 ProductDTO:
 		Optional<ProductDTO> optProductDTO = productService.findAllProducts()
 				.stream()
-				.filter(dto -> dto.getProductId().equals(productId))
+				.filter(dto -> dto.getProductId().equals(productId)) 
 				.findFirst();
 		
-		// 確認有 productDTO
+		// filter() 是確認資料庫有紀錄這個 Product，
+		// 一定會有因為 ProductId 也是根據 ProductDTOs 集合所取得的資訊，
+		// 是由 OrderServlet @WebServlet("/product/order") 也是執行 productService.findAllProducts()，
+		// 取得目前資料庫紀錄的登入產品。
+		
+		
+		// 確認有 productDTO，將這個物件加入 session 當中的 cart List<productDTO> 集合。
+		// 就可以讓所有 JSP 網頁知道 cart 裡面有哪些 ProductDTO。
 		if(optProductDTO.isPresent()) {
 			// 於購物車中加入一筆商品。
 			cart.add(optProductDTO.get());
@@ -64,3 +72,5 @@ public class OrderAddCartServlet extends HttpServlet {
 //		System.out.println(session.getAttribute("cart"));
 	}
 }
+
+// 所以結束後，Session 就會儲存你點選的產品，將他的 ProductDTO 儲存起來。

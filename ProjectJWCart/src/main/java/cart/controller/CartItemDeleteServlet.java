@@ -27,9 +27,12 @@ public class CartItemDeleteServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		if(session.getAttribute("cart") != null) {
 			
+			// 從 Session 取出 cart 集合
 			List<OrderDTO> carts = (List<OrderDTO>)session.getAttribute("cart");
+			// 利用集合方法 remove 刪除目標
 			carts.remove(index);
-			// 回傳給 session 覆蓋原本的 cart，但其實不用 (session 是 reference type)
+			// 重新回傳刪除目標的集合給 session，覆蓋原本的 cart 
+			// (但其實不用，因為 session 是 reference type)
 			session.setAttribute("carts", carts);
 		}
 		resp.sendRedirect("/JavaWebCart/product/cart");
