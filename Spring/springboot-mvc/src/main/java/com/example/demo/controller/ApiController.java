@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.BMI;
+import com.example.demo.response.ApiResponse;
+
 // RestController 可以免去撰寫 @ResponseBody，
 // 但若要透過 jsp 渲染則不適用。
 
@@ -60,4 +63,38 @@ public class ApiController {
 		return result;
 	}
 	
+	
+	/*
+	 * 4. Lab 練習 I
+	 * 路徑: /bmi?h=170&w=60
+	 * 網址: http://localhost:8080/api/bmi?h=174.5&w=70
+	 * 執行結果: bmi = 20.76
+	 * 建立類似 JSON 格式：
+	 * {
+	 *  "status": 200,
+	 *  "message": "BMI 計算成功",
+	 *  "data":{
+	 *  	"height": 170.0,
+	 *  	"weight": 60.0,
+	 *  	"bmi": 20.76
+	 *  }
+	 * }
+	 * 
+	 * */
+	
+	// 設定 produces = "application/json;charset = utf-8" 就會將物件轉成 JSON 格式。
+	@GetMapping(value = "/bmi", produces = "application/json;charset = utf-8")
+	public ApiResponse calBMI(
+			@RequestParam(value = "h", required = false) Double hei, 
+			@RequestParam(value = "w", required = false) Double wei
+			) {
+		
+		if(hei == null || wei == null) {
+			return ApiResponse.error(400, "Please provide weight and height.");
+		}
+		
+		// 計算 bmi
+		Double bmi = wei/ ((hei/100.0)*(hei/100.0));
+		return ApiResponse.success("BMI testing success.", new BMI(hei, wei, bmi));
+	}
 }
