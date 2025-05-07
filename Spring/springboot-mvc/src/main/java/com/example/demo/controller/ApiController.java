@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -144,36 +146,76 @@ public class ApiController {
 	}
 	
 	
+	
 	/* 6. Lab 練習: 得到多筆 score 資料
 	 * 路徑: "/exam?score=80&score=100&score=50&score=70&score=30"
 	 * 網址: http://localhost:8080/api/exam?score=80&score=100&score=50&score=70&score=30
 	 * 請自行設計一個方法，此方法可以
 	 * 印出: 最高分=?、最低分=?、平均=?、總分=?、及格分數列出=?、不及格分數列出=?
 	 */
-	@GetMapping(value = "/score", produces = "application/json;charset = utf-8")
-	public ResponseEntity<ApiResponse<Object>> scoreSummary(
-			// 多參數帶入 List 當中
-			@RequestParam("score") List<String> scores){
+//	@GetMapping(value = "/exam", produces = "application/json;charset = utf-8")
+//	public ResponseEntity<ApiResponse<Object>> scoreSummary(
+//			// 多參數帶入 List 當中
+//			@RequestParam("score") List<String> scores){
+//		
+//		if(scores == null || scores.size() == 0) {
+//			return ResponseEntity.badRequest().body(ApiResponse.error("輸入一個 score"));
+//		}
+//		
+//		// 計算最高分
+//		Integer max = scores.stream().mapToInt(Integer::parseInt).max().orElseGet(()-> 0); 
+//		// 計算最低分
+//		Integer min = scores.stream().mapToInt(Integer::parseInt).min().orElseGet(()-> 0); 
+//		// 計算平均
+//		Double avg = scores.stream().mapToInt(Integer::parseInt).average().orElseGet(()-> 0); 
+//		// 總分
+//		Integer sum = scores.stream().mapToInt(Integer::parseInt).sum(); 
+//		// 及格分數
+//		int[]  pass = scores.stream().mapToInt(Integer::parseInt).filter(s -> s>60).toArray();
+//		// 不及格分數
+//		int[] fail = scores.stream().mapToInt(Integer::parseInt).filter(s -> s<60).toArray();
+//		
+//		Object map = Map.of(
+//				"所有成績", scores,
+//				"最高成績", String.format("%s", max),
+//				"最低成績", String.format("%s", min),
+//				"平均年齡", String.format("%.1f", avg),
+//				"總分", String.format("%s", sum),
+//				"及格分數", pass,
+//				"不及格分數", fail
+//				);
+//		
+//		
+//		return ResponseEntity.ok(ApiResponse.success("成績總覽", map));
+//		
+//	}// end of ScoreSummary
+//	
+	
+	// 使用 partitioningBy 的寫法將成績及格與不及格分開。
+	@GetMapping(value = "/exam", produces = "application/json;charset=utf-8")
+	public ResponseEntity<ApiResponse<Object>> getExamInfo(@RequestParam(name = "score", required = false) List<Integer> scores) {
 		
-		if(scores == null || scores.size() == 0) {
-			return ResponseEntity.badRequest().body(ApiResponse.error("輸入一個 score"));
-		}
+		// 統計資料
+		// 統計物件：IntSummaryStatistics
+		IntSummaryStatistics stat = scores.stream().mapToInt(Integer::intValue).summaryStatistics();
 		
-		// 計算最高分
-		Integer max = scores.stream().mapToInt(Integer::parseInt).max().orElseGet(()-> 0); 
-		// 計算最低分
-		Integer min = scores.stream().mapToInt(Integer::parseInt).min().orElseGet(()-> 0); 
-		// 計算平均
-		Double avg = scores.stream().mapToInt(Integer::parseInt).average().orElseGet(()-> 0); 
-		// 總分
-		Integer sum = scores.stream().mapToInt(Integer::parseInt).sum().orElseGet(()-> 0); 
-		// 及格分數
-		List<Integer> pass = scores.stream().mapToInt(Integer::parseInt).filter(s -> s>60).toArray();
-		// 不及格分數
-		List<Integer> fail = scores.stream().mapToInt(Integer::parseInt).filter(s -> s<60).toArray();
+		// 利用 Collectors.partitioningBy 分組
+		// key=true 及格分數 | key=false 不及格分數
+		Map<Boolean, List<Integer>> resultMap = scores.stream()
+				.collect(Collectors.partitioningBy(score -> score >= 60));
 		
+		// 建立 ApiResponse 回傳的 data 資料 (T)
+		Object data = Map.of(
+				"最高分", stat.getMax(),
+				"最低分", stat.getMin(),
+				"平均", stat.getAverage(),
+				"總分", stat.getSum(),
+				"及格", resultMap.get(true),
+				"不及格", resultMap.get(false));
 		
-	}// end of ScoreSummary
+		return ResponseEntity.ok(ApiResponse.success("計算成功", data));
+	}
+	
 	
 	
 }
