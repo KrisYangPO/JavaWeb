@@ -30,5 +30,40 @@ public class Grouping {
 		Map<String, Long> result = fruits.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 		System.out.println(result);
 		
+		
+		
+		List<Map> students = List.of(
+				Map.of("gender","男", "grade", "A"),
+				Map.of("gender","男", "grade", "B"),
+				Map.of("gender","男", "grade", "A"),
+				Map.of("gender","女", "grade", "A"),
+				Map.of("gender","女", "grade", "B"),
+				Map.of("gender","男", "grade", "B")
+				);
+		
+		// 用 gender 分組
+		Map<String, Long> genderGroup = students
+				.stream()
+				.collect(Collectors.groupingBy(
+						(m -> String.valueOf(m.get("gender"))), 
+						Collectors.counting()
+						)
+						);
+		System.out.println(genderGroup);
+		
+		
+		// 用 grade 分組
+		Map<String, Long> gradeGroup = students
+				.stream()
+				.collect(Collectors.groupingBy(
+						(m -> String.valueOf(m.get("grade"))), 
+						Collectors.counting()
+						)
+				);
+		System.out.println(gradeGroup);
+		
+		
+		
+		
 	}// end of Map
 }
