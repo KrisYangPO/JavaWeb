@@ -24,13 +24,13 @@ public class HelloController {
 		return "Hi." + new Date();
 	}
 	
-	// 寫了 JSP 就不用給 ResponseBody
+	// 寫了 JSP 就不用給 ResponseBody，他就會去找 JSP 檔
 	@GetMapping("/welcome")
 	// Model 裡面放的就是要傳給 JSP 的資料 (相對於 Servlet 中的 req.setAttribute("var", var))
 	public String welcome(Model model) {
 		model.addAttribute("name", "PO");
 		model.addAttribute("now", new Date());
-		// return 的東西就是取 welcome.jsp 檔名的部分
+		// return 的東西就是取 welcome.jsp 檔名的部分 (類似 requestDispatcher 指定到哪個 JSP 檔案)
 		return "welcome"; 
 	}
 	
