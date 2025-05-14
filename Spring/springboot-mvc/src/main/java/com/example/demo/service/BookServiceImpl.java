@@ -4,25 +4,28 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.exception.BookException;
 import com.example.demo.model.Book;
 import com.example.demo.repository.BookRepository;
 
+@Service
 public class BookServiceImpl implements BookService {
+	
 	@Autowired
 	private BookRepository bookRepository;
-
+	
 	@Override
 	public List<Book> findAllBooks() {
 		return bookRepository.findAllBooks();
 	}
 
 	@Override
-	public Book getBookbyId(Integer id) throws BookException {
-		Optional<Book> optBook = bookRepository.getBookbyId(id);
+	public Book getBookById(Integer id) throws BookException {
+		Optional<Book> optBook = bookRepository.getBookById(id);
 		if(optBook.isEmpty()) {
-			throw new BookException("id" + id + "查無資料");
+			throw new BookException("id: " + id + ", 查無此書");
 		}
 		return optBook.get();
 	}
@@ -30,45 +33,46 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public void addBook(Book book) throws BookException {
 		if(!bookRepository.addBook(book)) {
-			throw new BookException("新增失敗" + book);
+			throw new BookException("新增失敗, " + book);
 		}
+		
 	}
 
 	@Override
 	public void updateBook(Integer id, Book book) throws BookException {
 		if(!bookRepository.updateBook(id, book)) {
-			throw new BookException("更新失敗" + book);
+			throw new BookException("修改失敗, id: " + id + ", " + book);
 		}
 	}
 
 	@Override
 	public void updateBookName(Integer id, String name) throws BookException {
-		Book book = getBookbyId(id);
+		Book book = getBookById(id);
 		book.setName(name);
 		updateBook(book.getId(), book);
 	}
 
 	@Override
 	public void updateBookPrice(Integer id, Double price) throws BookException {
-		Book book = getBookbyId(id);
+		Book book = getBookById(id);
 		book.setPrice(price);
 		updateBook(book.getId(), book);
-		
 	}
 
 	@Override
-	public void updateBookNamePrice(Integer id, String name, Double price) throws BookException {
-		Book book = getBookbyId(id);
+	public void updateBookNameAndPrice(Integer id, String name, Double price) throws BookException {
+		Book book = getBookById(id);
 		book.setName(name);
 		book.setPrice(price);
 		updateBook(book.getId(), book);
-		
 	}
 
 	@Override
 	public void deleteBook(Integer id) throws BookException {
 		if(!bookRepository.deleteBook(id)) {
-			throw new BookException("刪除失敗" + id);
+			throw new BookException("刪除失敗, id: " + id);
 		}
+		
 	}
+	
 }
