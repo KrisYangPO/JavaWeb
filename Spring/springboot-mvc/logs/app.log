@@ -179,3 +179,4 @@ Caused by: java.net.ConnectException: Connection refused
 2025-05-14T09:42:18.105+08:00  INFO 17715 --- [springboot-mvc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-05-14T09:42:18.106+08:00  INFO 17715 --- [springboot-mvc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2025-05-14T09:42:18.128+08:00  INFO 17715 --- [springboot-mvc] [http-nio-8080-exec-1] c.example.demo.controller.ApiController  : 執行路徑是：/greet?name=John&age=18
+2025-05-14T10:18:49.486+08:00  WARN 17715 --- [springboot-mvc] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m29s520ms).
