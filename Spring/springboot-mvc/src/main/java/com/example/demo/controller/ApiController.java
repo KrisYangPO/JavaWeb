@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +27,10 @@ import com.example.demo.response.ApiResponse;
 // @RequestMapping 統一這個 ApiController 下的所有 URL 都會有前綴：/api
 // 所以後面的路徑其實是：/api/home/ 和 /api/
 public class ApiController {
+	
+	// 可以將底下執行的程式的參數紀錄在外部檔案裡面
+	// 要先設定 Logger 物件
+	private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
 	
 	/* 1. 首頁
 	 * 路徑：/api/home
@@ -52,6 +58,12 @@ public class ApiController {
 	// 用 RequestParam 找到網址中的 age 參數，非必要參數，並將參數值儲存在 userage 變數中。
 	public String greet(@RequestParam(value = "name", required=true) String username,
 			@RequestParam(value = "age", required=false, defaultValue = "0") Integer userage) {
+		
+		// 如果要紀錄參數到上面 Logger 物件的 log 紀錄檔案裡：
+		logger.info("執行路徑是：/greet?name="+username + "&age=" + userage);
+		// logger 就會將這段話紀錄到 logs 資料夾中的 app.log 檔案裡。
+		// 原因是我們在 resources/applicatino.properties 當中設定 log 配置，
+		// logging.file.name=logs/app.log 會將檔案儲存到這檔案裡。
 		
 		String result = String.format("Hi %s %d (%s)",
 				username, userage, userage > 18? "成年":"未成年");
