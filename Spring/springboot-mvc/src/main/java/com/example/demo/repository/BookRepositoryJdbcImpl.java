@@ -52,6 +52,13 @@ public class BookRepositoryJdbcImpl implements BookRepository{
 	@Override
 	public boolean addBook(Book book) {
 		String sql = "insert into book(name, price, amount, pub) values(?,?,?,?)";
+		
+		// 檢查 pub 是否為 null，如果 checkbox 沒有勾選就會是 null，
+		// 因此在資料庫端判斷如果是 null 就改成 false。
+		if(book.getPub() == null) {
+			book.setPub(false);
+		}
+		// 執行新增
 		int rows = jdbcTemplate.update(sql, book.getName(), book.getPrice(), book.getAmount(), book.getPub());
 		
 		// 如果有更新就會大於零，沒有就沒有更新成功。
@@ -62,6 +69,13 @@ public class BookRepositoryJdbcImpl implements BookRepository{
 	public boolean updateBook(Integer id, Book book) {
 		String sql = "update book set name = ?, price = ?, amount = ?, pub = ? where id = ?";
 		// 最後給予 Sql 變數 "?" 的參數為 id;
+		
+		// 檢查 pub 是否為 null，如果 checkbox 沒有勾選就會是 null，
+		// 因此在資料庫端判斷如果是 null 就改成 false。
+		if(book.getPub() == null) {
+			book.setPub(false);
+		}
+		// 執行修改。
 		int rows = jdbcTemplate.update(sql, book.getName(), book.getPrice(), book.getAmount(), book.getPub(), id);
 		return rows > 0;
 	}

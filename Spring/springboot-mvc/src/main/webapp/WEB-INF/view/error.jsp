@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<%@ include file = "include/menu.jsp" %>
+	<div>
+		錯誤訊息：${ message }
+	</div>
 </body>
 </html>
