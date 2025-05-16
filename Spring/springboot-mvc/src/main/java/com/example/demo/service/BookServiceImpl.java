@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.exception.BookException;
@@ -14,6 +15,12 @@ import com.example.demo.repository.BookRepository;
 public class BookServiceImpl implements BookService {
 	
 	@Autowired
+	// Service 呼叫這個介面繼承的 DAO 實作時，
+	// 會發現有多個 bookRepository 實作類別：BookRepositoryJdbcImpl 和 BookRepositoryImpl
+	// 可以用 @Primary 加在你要使用的實作類別，但是不好用。
+	// 或是在 Service 當中使用 @Qualifier("bookRepositoryJdbcImpl") -> 類別第一個字母改小寫。
+	// 這樣就可以指定 Service 要用哪個 DAO 介面實作物件：
+	@Qualifier("bookRepositoryJdbcImpl")
 	private BookRepository bookRepository;
 	
 	@Override
