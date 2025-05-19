@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.model.dto.RoomDTO;
 import com.example.demo.service.RoomService;
@@ -20,8 +24,8 @@ import jakarta.validation.Valid;
  * GET: /room/{roomId} -> 查詢指定會議室(單筆)
  * GET: /rooms -> 查詢所有會議室(多筆)
  * POST: /room -> 新增會議室
- * POST: /room/update/{roomId} -> 完整修改會議室(同時修改 roomName 與 roomSize)
- * GET: /room/delete/{roomId} -> 刪除會議室
+ * PUT: /room/update/{roomId} -> 完整修改會議室(同時修改 roomName 與 roomSize)
+ * DELETE: /room/delete/{roomId} -> 刪除會議室
  * */
 
 @Controller
@@ -65,9 +69,41 @@ public class RoomController {
 			model.addAttribute("roomDTOs", roomService.findAllRooms());
 			return "room/room";
 		}
-		
 		// 進行新增。
 		roomService.addRoom(roomDTO);
 		return "redirect:/rooms";
 	}
+	
+	@GetMapping("/{roomId}")
+	public String getRoom(@PathVariable Integer roomId, Model model) {
+		RoomDTO roomDTO = roomService.getRoomById(roomId);
+		model.addAttribute("roomDTO",roomDTO);
+		return "room/room_update";
+	}
+	
+	@PutMapping("/update/{roomId}")
+	public String updateRoom(@PathVariable Integer roomId, @Valid RoomDTO roomDTO, BindingResult bindingResult, Model model) {
+		// 驗證資料
+		// hasError: 若有錯誤資料發生
+		if(bindingResult.hasErrors()) {
+			return "room/room_update";
+		}
+		// 進行修改：
+		roomService.updateRoom(roomId, roomDTO);
+		return "redirect:/rooms";
+	}
+	
+	@DeleteMapping("/delete/{roomId}")
+	public String deleteRoom(@PathVariable Integer roomId, Model model) {
+		roomService.deleteRoom(roomId);
+		return "redirect:/rooms";
+	}
+	
+	@ExceptionHandler({Exception.class})
+	public String handleException(Exception e, Model model) {
+		e.printStackTrace();
+		model.addAttribute("message", e.getMessage());
+		return "error";
+	}
+	
 }

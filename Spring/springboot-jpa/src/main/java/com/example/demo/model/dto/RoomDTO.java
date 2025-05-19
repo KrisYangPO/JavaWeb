@@ -3,6 +3,7 @@ package com.example.demo.model.dto;
 import org.hibernate.validator.constraints.Range;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,8 +16,8 @@ public class RoomDTO {
 	@Range(min=1, max=9999, message = "{roomDTO.roomId.range}")
 	private Integer roomId;
 	
-	@NotNull(message = "{roomDTO.roomName.notNull}")
-	@Range(min=2, message = "{roomDTO.roomName.range}")
+	@NotNull(message = "{roomDTO.roomName.notEmpty}")
+	@Size(min=2, message = "{roomDTO.roomName.range}")
 	private String roomName;
 	
 	@NotNull(message = "{roomDTO.roomSize.notNull}")
