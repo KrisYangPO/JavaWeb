@@ -2190,3 +2190,45 @@ java.lang.IllegalStateException: Neither BindingResult nor plain target object f
 2025-05-19T11:59:57.536+08:00  INFO 1971 --- [springboot-jpa] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-05-19T11:59:57.537+08:00  INFO 1971 --- [springboot-jpa] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
 2025-05-19T12:00:32.290+08:00  WARN 1971 --- [springboot-jpa] [http-nio-8081-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2025-05-19T12:12:27.160+08:00  INFO 1971 --- [springboot-jpa] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-05-19T12:12:27.166+08:00  INFO 1971 --- [springboot-jpa] [Thread-5] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-19T12:12:27.172+08:00  INFO 1971 --- [springboot-jpa] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-19T12:12:27.176+08:00  INFO 1971 --- [springboot-jpa] [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-19T12:12:27.179+08:00  INFO 1971 --- [springboot-jpa] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-19T12:12:27.184+08:00  INFO 1971 --- [springboot-jpa] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-19T12:12:27.226+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] c.example.demo.SpringbootJpaApplication  : Starting SpringbootJpaApplication using Java 21.0.6 with PID 1971 (/Users/popoyang/Documents/Coding/Java_Class/JavaWeb/Spring/springboot-jpa/target/classes started by popoyang in /Users/popoyang/Documents/Coding/Java_Class/JavaWeb/Spring/springboot-jpa)
+2025-05-19T12:12:27.226+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] c.example.demo.SpringbootJpaApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-05-19T12:12:27.269+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-05-19T12:12:27.270+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-19T12:12:27.271+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.RoomRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-05-19T12:12:27.271+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 JDBC repository interfaces.
+2025-05-19T12:12:27.272+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-05-19T12:12:27.272+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-19T12:12:27.274+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 1 JPA repository interface.
+2025-05-19T12:12:27.309+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-05-19T12:12:27.309+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-19T12:12:27.309+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-19T12:12:27.334+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-19T12:12:27.335+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-19T12:12:27.335+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 108 ms
+2025-05-19T12:12:27.347+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-19T12:12:27.348+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-19T12:12:27.351+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-19T12:12:27.351+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2025-05-19T12:12:27.354+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@54a8af7c
+2025-05-19T12:12:27.354+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2025-05-19T12:12:27.354+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 8.4.4
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-19T12:12:27.367+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-19T12:12:27.373+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-19T12:12:27.411+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-05-19T12:12:27.448+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-05-19T12:12:27.453+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-05-19T12:12:27.455+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] c.example.demo.SpringbootJpaApplication  : Started SpringbootJpaApplication in 0.24 seconds (process running for 754.483)
+2025-05-19T12:12:27.456+08:00  INFO 1971 --- [springboot-jpa] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
