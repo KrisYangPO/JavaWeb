@@ -13,4 +13,19 @@ public class ModelMapperConfig {
 	ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
+	
+	
+	/* @Bean & @Autowired:	
+	 * 因為 @Bean 標籤，可以讓其他的物件或是系統，透過 @Autoweired 標籤使用這個"方法"。
+	 * 
+	 * 另外像是 @Component 與他的子繼承 @Service, @Repository 都有與 @Bean 一致的功能，
+	 * 因此在其他系統物件中，想要呼叫 Repository 物件實體時，不用像以前：
+	 * RoomRepository roomRepository = new RoomRepositoryImpl();
+	 * 可以直接寫：
+	 * 		@Autowired 
+	 * 		private RoomRepository roomRepository; 
+	 * 
+	 * 這樣就可以呼叫 RoomRepository 所定義的功能。
+	 * 
+	 */ 
 }

@@ -2,8 +2,14 @@
     pageEncoding="UTF-8"%>
 <!-- Spring Form 表單標籤 -->
 <%@ taglib prefix="sp" uri="http://www.springframework.org/tags/form" %>
+
+<!-- 在 controller 當中使用：getRooms(Model) 當中的 model.addAttribute("roomDTO") 就會傳到: modelAttribute = "roomDTO"-->
+
 <sp:form class="pure-form" method="post" modelAttribute="roomDTO" action="/room" >
 	<fieldset>
+		
+		<!-- 使用 path = "roomId" 就會產生 <input id="roomId" name = "roomId"> 這樣的效果。 -->
+		
 		<legend>Room 表單</legend>
 		Room 房號: <sp:input type="number" path="roomId" />
 		<sp:errors path="roomId" style="color: red" />
