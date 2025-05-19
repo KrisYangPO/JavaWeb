@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!-- Spring Form 表單標籤 -->
 <%@ taglib prefix="sp" uri="http://www.springframework.org/tags/form" %>
-<sp:form class="pure-form" method="post" modelAttribute="roomDto" action="/room" >
+<sp:form class="pure-form" method="post" modelAttribute="roomDTO" action="/room" >
 	<fieldset>
 		<legend>Room 表單</legend>
 		Room 房號: <sp:input type="number" path="roomId" />

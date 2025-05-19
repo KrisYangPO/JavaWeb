@@ -21,7 +21,7 @@
 				<tr>
 					<!-- Room 表單修改 -->
 					<td valign="top">
-						<sp:form class="pure-form" method="post" modelAttribute="roomDto" action="/room/update/${ roomDto.roomId }" >
+						<sp:form class="pure-form" method="post" modelAttribute="roomDTO" action="/room/update/${ roomDTO.roomId }" >
 							<fieldset>
 								<legend>Room 表單修改</legend>
 								Room 房號: <sp:input type="number" path="roomId" readonly="true" />
