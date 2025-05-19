@@ -13,10 +13,10 @@ import com.example.demo.service.RoomService;
 
 /*
  * GET: /room/{roomId} -> 查詢指定會議室(單筆)
- * GET: /rooms -> 
- * POST: /room
- * POST: /room/update/{roomId}
- * GET: /room/delete/{roomId}
+ * GET: /rooms -> 查詢所有會議室(多筆)
+ * POST: /room -> 新增會議室
+ * POST: /room/update/{roomId} -> 完整修改會議室(同時修改 roomName 與 roomSize)
+ * GET: /room/delete/{roomId} -> 刪除會議室
  * */
 
 @Controller
