@@ -194,3 +194,10 @@
 2025-05-19T10:22:49.681+08:00  INFO 1579 --- [springboot-jpa] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-05-19T10:22:49.682+08:00  INFO 1579 --- [springboot-jpa] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-05-19T10:22:49.685+08:00  INFO 1579 --- [springboot-jpa] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-19T10:44:34.528+08:00  WARN 1510 --- [springboot-jpa] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m23s208ms).
+2025-05-19T11:12:46.327+08:00  INFO 1510 --- [springboot-jpa] [RMI TCP Connection(68)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-05-19T11:12:46.329+08:00  INFO 1510 --- [springboot-jpa] [RMI TCP Connection(68)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-19T11:12:46.331+08:00  INFO 1510 --- [springboot-jpa] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-19T11:12:46.333+08:00  INFO 1510 --- [springboot-jpa] [RMI TCP Connection(68)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-19T11:12:46.334+08:00  INFO 1510 --- [springboot-jpa] [RMI TCP Connection(68)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-19T11:12:46.335+08:00  INFO 1510 --- [springboot-jpa] [RMI TCP Connection(68)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
