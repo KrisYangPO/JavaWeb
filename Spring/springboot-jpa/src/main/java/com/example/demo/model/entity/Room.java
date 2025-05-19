@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "room") // 宣告表格名稱。若資料表與此物件實體一致，則不用設定此行。
 public class Room {
 	
-	@Id // 主鍵序號
+	@Id // 設定哪一個 column 的內容是主鍵。
 //	@GeneratedValue(strategy = GenerationType.IDENTITY) // room_id 會從1開始自動生成，每次新增一筆資料就+1。
 	@Column(name = "room_Id") // 設定欄位名稱與 sql 欄位特性。
 	private Integer roomId;
