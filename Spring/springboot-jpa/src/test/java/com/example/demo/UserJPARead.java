@@ -8,17 +8,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.model.entity.Room;
 import com.example.demo.repository.RoomRepository;
+import com.example.demo.service.UserService;
 
 @SpringBootTest
-public class RoomJPARead {
+public class UserJPARead {
 	
 	@Autowired
-	private RoomRepository roomRepository;
+	private UserService userService;
 	
 	@Test 
 	public void test() {
-		List<Room> rooms = roomRepository.readRooms(30);
-		System.out.println(rooms.size());
-		System.out.println(rooms);
+		System.out.println(userService.getUser("john"));
+		System.out.println(userService.getUser("mary"));
 	}
 }
