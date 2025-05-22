@@ -5,7 +5,7 @@
 //@Data
 //@AllArgsConstructor
 //@NoArgsConstructor
-// 建立 Server 與 Client 在資料傳遞上的統一結構與標準
+//// 建立 Server 與 Client 在資料傳遞上的統一結構與標準
 //public class ApiResponse<T> {
 //	
 //	private Integer status; // 狀態：200, 400
@@ -26,7 +26,7 @@
 //}
 
 
-// 利用 responseEntity 方式自動抓取 status
+// // 利用 responseEntity 方式自動抓取 status
 package com.example.demo.response;
 import lombok.AllArgsConstructor;
 import lombok.Data;
