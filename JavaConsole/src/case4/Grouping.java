@@ -53,13 +53,7 @@ public class Grouping {
 		
 		
 		// 用 grade 分組
-		Map<String, Long> gradeGroup = students
-				.stream()
-				.collect(Collectors.groupingBy(
-						(m -> String.valueOf(m.get("grade"))), 
-						Collectors.counting()
-						)
-				);
+		Map<Object, Long> gradeGroup = students.stream().collect(Collectors.groupingBy(m -> m.get("grade"), Collectors.counting()));
 		System.out.println(gradeGroup);
 		
 		

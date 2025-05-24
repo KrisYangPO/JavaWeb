@@ -255,7 +255,7 @@ public class ApiController {
 	 * 網址：http://localhost:8080/api/book2?name=English&price=10.5&amount=20&pub=false
 	 * */
 	@GetMapping(value = "/book2", produces = "application/json;charset=utf-8")
-	public ResponseEntity<ApiResponse<Object>> getBookInfo2(@RequestParam Book book){
+	public ResponseEntity<ApiResponse<Object>> getBookInfo2(Book book){
 		book.setId(1);
 		System.out.println(book);
 		return ResponseEntity.ok(ApiResponse.success("回應成功2", book));
@@ -270,11 +270,11 @@ public class ApiController {
 	 * http://localhost:8080/api/book?id=1
 	 * 
 	 * REST 網頁狀態設計： 針對 URL 的風格設計的規格。
-	 * GET /books 查詢所有書籍
-	 * GET /book/1 查詢單筆書籍
-	 * POST /book 新增書籍
-	 * PUT /book/1 修改單筆書籍
-	 * DELETE /book/1 刪除單筆書籍
+	 * GET	/books		查詢所有書籍
+	 * GET	/book/1		查詢單筆書籍
+	 * POST	/book		新增書籍
+	 * PUT	/book/1		修改單筆書籍
+	 * DELETE /book/1	刪除單筆書籍
 	 * 
 	 * 路徑：/book/1 得到 id=1 的書，
 	 * 路徑：/book/2 得到 id=2 的書，
