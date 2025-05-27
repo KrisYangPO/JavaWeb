@@ -16,7 +16,11 @@ public interface PublisherRepository extends JpaRepository<Publisher, Integer>{
 	@Query(value= "delete from publisher_book where publisher_id = :publisherId and book_id = :bookId", nativeQuery=true)
 	void deleteBookFromPublisher(@Param("publisherId") Integer publisherId, @Param("bookId") Integer bookId);
 	
-	// Query 因為是使用 JPA 所以 Query 不能 import JDBC 要用 JPA 
-	@Query("select p from Publisher p left join fetch p.books")
+	// 查詢 Publisher 資訊，需要取得這個 Publisher 的出版數 books，
+	// 是 ManyToMany fetchType = LAZY，因此可能會觸發 LAZY 查詢或是 N+1查詢問題
+	// 所以直接將 publisher 與他的關聯表格 book 組合再一起，
+	// 在查詢方法執行時，SQL 抓取這兩個關聯資料時會組合，在一次查詢內呈現。
+	
+	@Query("select a from Publisher a left join fetch a.books")
 	List<Publisher> findAllWithBooks();
 }
