@@ -21,8 +21,8 @@ public class Test_ReadBio {
 	
 	@Test
 	public void read() {
-		List<Biography> biographies = biographRepository.findAll();
-//		List<Biography> biographies = biographRepository.findAllwithAuthor();
+//		List<Biography> biographies = biographRepository.findAll();
+		List<Biography> biographies = biographRepository.findAllwithAuthor();
 		biographies.forEach(bio -> {
 			System.out.printf("傳記編號：%d 內容：%s 作者：%s%n",
 					bio.getId(), bio.getDetails(), bio.getAuthor().getName());
