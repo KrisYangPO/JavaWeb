@@ -14,6 +14,8 @@ import com.example.demo.model.Book;
 @Repository
 public class BookRepositoryJdbcImpl implements BookRepository{
 	
+	// JdbcTemplate 為 Spring 框架的模板，可以簡化 JDBC 程式碼，自動關閉資源
+	// 像是 Connection, Statement, 跟 ResultSet.
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -22,7 +24,7 @@ public class BookRepositoryJdbcImpl implements BookRepository{
 		// 不可以用 select *，是潛規則。
 		String sql = "select id, name, price, amount, pub from book";
 		
-		// 將 sql 查詢結果，自動注入到 Book 物件的對應屬性中。
+		// RowMapper 可以將 sql 查詢結果，自動注入到 Book Entity 物件的對應屬性中。
 		// 前提是 SQL 欄位名稱要與 Book 物件中的屬性名稱一致 (Java 反射機制)。
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Book.class));
 	}
@@ -45,6 +47,7 @@ public class BookRepositoryJdbcImpl implements BookRepository{
 			return Optional.of(book); // 將 Book 物件轉成 Optional 物件。
 			
 		} catch (EmptyResultDataAccessException e) {
+			// 沒查到東西
 			return Optional.empty();
 		}
 	}
@@ -58,6 +61,9 @@ public class BookRepositoryJdbcImpl implements BookRepository{
 		if(book.getPub() == null) {
 			book.setPub(false);
 		}
+		
+		// 或是直接在 Book Entity 當中，直接設定 pub 初始值為 false，
+		
 		// 執行新增
 		int rows = jdbcTemplate.update(sql, book.getName(), book.getPrice(), book.getAmount(), book.getPub());
 		

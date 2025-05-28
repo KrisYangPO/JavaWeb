@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -42,7 +43,7 @@ public class SSRBookController {
 	
 	// 新增書籍
 	@PostMapping("/add")
-	public String addBook(Book book, Model model) {
+	public String addBook(@ModelAttribute Book book, Model model) {
 		try {
 			bookService.addBook(book);
 		} catch (BookException e) {
@@ -77,7 +78,11 @@ public class SSRBookController {
 	public String getEditPage(@PathVariable Integer id, Model model) {
 		try {
 			Book book = bookService.getBookById(id);
-			// 將 book 傳出去，傳到 book-edit 
+			// 將 book 傳出去，傳到書籍更新頁面中，
+			// 這樣才可以根據這個 Book 取得 id，id 取得 book，
+			// book 物件就可以讓前端取得這個目標 book 物件的原始值，
+			// 這樣就可以在更新欄位上顯示你的原始值是多少，
+
 			model.addAttribute("book", book); 
 			return "book-edit";
 			
@@ -90,7 +95,7 @@ public class SSRBookController {
 	
 	// 更新書籍：
 	@PutMapping("/edit/{id}")
-	public String editBook(@PathVariable Integer id, Book book, Model model) {
+	public String editBook(@PathVariable Integer id, @ModelAttribute Book book, Model model) {
 		try {
 			bookService.updateBook(id, book);
 			
