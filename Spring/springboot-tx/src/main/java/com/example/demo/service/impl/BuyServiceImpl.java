@@ -2,6 +2,9 @@ package com.example.demo.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.exception.InsufficientAmountException;
 import com.example.demo.repository.BookRepository;
@@ -9,8 +12,6 @@ import com.example.demo.repository.StockRepository;
 import com.example.demo.repository.WalletRepository;
 import com.example.demo.service.BookService;
 import com.example.demo.service.BuyService;
-
-import jakarta.transaction.Transactional;
 
 @Service
 public class BuyServiceImpl implements BuyService{
@@ -20,8 +21,10 @@ public class BuyServiceImpl implements BuyService{
 	
 	@Override
 	@Transactional(
-			rollbackOn = {InsufficientAmountException.class},
-			dontRollbackOn = {RuntimeException.class}
+			propagation = Propagation.REQUIRED,
+			isolation = Isolation.REPEATABLE_READ,
+			rollbackFor = {InsufficientAmountException.class},
+			noRollbackFor = {RuntimeException.class}
 	)
 	public void buyOneBook(String username, Integer bookId) throws InsufficientAmountException {
 		System.out.printf("%s 要買書%n", username);
