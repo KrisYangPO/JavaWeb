@@ -22,13 +22,9 @@ public interface PublisherRepository extends JpaRepository<Publisher, Integer>{
 	// 所以直接將 publisher 與他的關聯表格 book 組合再一起，
 	// 在查詢方法執行時，SQL 抓取這兩個關聯資料時會組合，在一次查詢內呈現。
 	
-//	// 因為 books 是 List<book> 即使用 JOIN FETCH 還是會產生 N+1
-//	@Query("""
-//		    SELECT DISTINCT p
-//		    FROM Publisher p
-//		    LEFT JOIN FETCH p.books b
-//		    LEFT JOIN FETCH b.author
-//		""")
+//	//  因為 books 是 List<book> 即使用 JOIN FETCH 還是會產生 N+1
+//	@Query("select a from Publisher a left join fetch a.books")
+//	List<Publisher> findAllWithBooks();
 	
 	@EntityGraph(attributePaths = {"books"})
 	@Query("SELECT p FROM Publisher p")

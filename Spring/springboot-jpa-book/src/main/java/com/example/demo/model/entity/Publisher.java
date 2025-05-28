@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 @Data
@@ -36,8 +37,10 @@ public class Publisher {
 			joinColumns = @JoinColumn(name = "publisher_id"),
 			// publisher_book.book_id 是指向 Book.id 的外鍵
 			inverseJoinColumns = @JoinColumn(name = "book_id"))
-	
 	private List<Book> books;
+	
+	@OneToMany(mappedBy="publisher")
+	private List<BookPublish> bookPublishs;
 	
 	
 	// 在 Entity 中自建新增書籍

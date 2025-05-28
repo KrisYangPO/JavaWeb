@@ -16,7 +16,7 @@ public class Test_AddPublisher {
 	private BookRepository bookRepository;
 	
 	@Autowired
-	private PublisherRepository publsheRepository;
+	private PublisherRepository publsherRepository;
 	
 	@Test
 	public void add() {
@@ -36,8 +36,8 @@ public class Test_AddPublisher {
 		publisher3.setName("天下文化");
 //		publisher3.addBook(book4);
 		
-		publsheRepository.save(publisher1);
-		publsheRepository.save(publisher2);
-		publsheRepository.save(publisher3);
+		publsherRepository.save(publisher1);
+		publsherRepository.save(publisher2);
+		publsherRepository.save(publisher3);
 	}
 }

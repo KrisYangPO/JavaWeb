@@ -746,3 +746,10 @@ Identify and stop the process that's listening on port 8083 or configure this ap
 2025-05-27T12:22:57.911+08:00  INFO 5817 --- [springboot-jpa-book] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
 2025-05-27T12:22:58.062+08:00  INFO 5817 --- [springboot-jpa-book] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path '/'
 2025-05-27T12:22:58.066+08:00  INFO 5817 --- [springboot-jpa-book] [main] c.example.demo.SpringbootTxApplication   : Started SpringbootTxApplication in 1.149 seconds (process running for 1.331)
+2025-05-27T13:37:05.747+08:00  WARN 5817 --- [springboot-jpa-book] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h4m38s82ms).
+2025-05-27T13:37:13.292+08:00  INFO 5817 --- [springboot-jpa-book] [RMI TCP Connection(20)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-05-27T13:37:13.294+08:00  INFO 5817 --- [springboot-jpa-book] [RMI TCP Connection(20)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-27T13:37:13.295+08:00  INFO 5817 --- [springboot-jpa-book] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-27T13:37:13.297+08:00  INFO 5817 --- [springboot-jpa-book] [RMI TCP Connection(20)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-27T13:37:13.298+08:00  INFO 5817 --- [springboot-jpa-book] [RMI TCP Connection(20)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-27T13:37:13.300+08:00  INFO 5817 --- [springboot-jpa-book] [RMI TCP Connection(20)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
