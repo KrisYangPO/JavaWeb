@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +33,7 @@ import jakarta.validation.Valid;
 @RequestMapping(value = {"/room", "/rooms"})
 public class RoomController {
 	@Autowired
+	@Qualifier("roomServiceImpl2")
 	private RoomService roomService;
 	
 //	@GetMapping
@@ -82,7 +84,7 @@ public class RoomController {
 	}
 	
 	@PutMapping("/update/{roomId}")
-	public String updateRoom(@PathVariable Integer roomId, @Valid RoomDTO roomDTO, BindingResult bindingResult, Model model) {
+	public String updateRoom(@PathVariable Integer roomId, @Valid @ModelAttribute RoomDTO roomDTO, BindingResult bindingResult, Model model) {
 		// 驗證資料
 		// hasError: 若有錯誤資料發生
 		if(bindingResult.hasErrors()) {

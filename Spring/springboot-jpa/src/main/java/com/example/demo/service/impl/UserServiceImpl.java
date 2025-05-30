@@ -10,7 +10,7 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import com.example.demo.util.Hash;
 
-@Service
+//@Service
 public class UserServiceImpl implements UserService {
 	
 	@Autowired

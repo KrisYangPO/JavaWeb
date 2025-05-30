@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -39,6 +40,7 @@ DELETE /rest/room/{roomId} 刪除指定房間    roomId (路徑參數，房間 I
 public class RoomRestController {
 	
 	@Autowired
+	@Qualifier("roomServiceImpl2")
 	private RoomService roomService;
 	
 	// 取得所有房間列表
