@@ -19,8 +19,10 @@ public class UserJPAAddtest {
 	
 	@Test
 	public void testUserAdd() {
-		userService.addUser("john", "1234", "john@gmail.com", true, "admin");
-		userService.addUser("Mary", "5678", "mary@gmail.com", false, "user");
+//		userService.addUser("john", "1234", "john@gmail.com", true, "admin");
+//		userService.addUser("Mary", "5678", "mary@gmail.com", false, "user");
+		
+		System.out.println(userService.getUser("mary"));
 	}
 	
 }

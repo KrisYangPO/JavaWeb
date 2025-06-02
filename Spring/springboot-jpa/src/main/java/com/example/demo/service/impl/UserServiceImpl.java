@@ -1,5 +1,7 @@
 package com.example.demo.service.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,7 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import com.example.demo.util.Hash;
 
-//@Service
+@Service
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
@@ -21,11 +23,11 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public UserDto getUser(String username) {
-		User user = userRepository.getUser(username);
+		Optional<User> user = userRepository.readUserByName(username);
 		if(user == null) {
 			return null;
 		}
-		return userMapper.toDTO(user);
+		return userMapper.toDTO(user.get());
 	}
 
 	@Override
