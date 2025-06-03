@@ -1,7 +1,5 @@
 package com.example.demo.config;
 
-import java.net.http.WebSocket;
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
