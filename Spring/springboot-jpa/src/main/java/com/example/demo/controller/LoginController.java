@@ -1,5 +1,4 @@
 package com.example.demo.controller;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,15 +18,9 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-
-    private final ModelMapper modelMapper;
 	
 	@Autowired
 	private CertService certService;
-
-    LoginController(ModelMapper modelMapper) {
-        this.modelMapper = modelMapper;
-    }
 	
 	@GetMapping
 	public String loginPage() {
